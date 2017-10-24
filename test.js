@@ -19,7 +19,7 @@ function create_server(){
     console.log(`server listening ${address.address}:${address.port}`);
   });
 
-  server.bind(41234);
+  server.bind(9229);
 }
 
 function create_client(){
@@ -29,7 +29,7 @@ function create_client(){
   const buf2 = Buffer.from('bytes');
 
   // socket.send(msg, [offset, length,] port [, address] [, callback])
-  client.send([buf1, buf2], 41234, '127.0.0.1', (err) => {
+  client.send([buf1, buf2], 9229, '127.0.0.1', (err) => {
     client.close();
   });
 }
