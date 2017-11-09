@@ -1,0 +1,24 @@
+{
+  "name": "capitalism",
+  "version": "1.0.0",
+  "description": "",
+  "main": "government.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctmakro/capitalism.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ctmakro/capitalism/issues"
+  },
+  "homepage": "https://github.com/ctmakro/capitalism#readme",
+  "dependencies": {
+    "argparse": "^1.0.9",
+    "ip-range-check": "0.0.2",
+    "pac-proxy-agent": "^2.0.0"
+  }
+}

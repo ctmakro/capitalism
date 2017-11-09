@@ -29,7 +29,7 @@ function create_client(){
   const buf2 = Buffer.from('bytes');
 
   // socket.send(msg, [offset, length,] port [, address] [, callback])
-  client.send([buf1, buf2], 9229, '127.0.0.1', (err) => {
+  client.send([buf1, buf2], 9229, '54.214.61.47', (err) => {
     client.close();
   });
 }
