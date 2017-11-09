@@ -1,0 +1,3 @@
+[submodule "socksv5"]
+	path = socksv5
+	url = https://github.com/lee-elenbaas/socksv5
