@@ -1,0 +1,94 @@
+{
+  "log": {
+    "access": "access.log",
+    "error": "error.log",
+    "loglevel": "warning"
+  },
+  "dns": {},
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "rules": [
+        {
+          "type": "field",
+          "ip": [
+            "0.0.0.0/8",
+            "10.0.0.0/8",
+            "100.64.0.0/10",
+            "127.0.0.0/8",
+            "169.254.0.0/16",
+            "172.16.0.0/12",
+            "192.0.0.0/24",
+            "192.0.2.0/24",
+            "192.168.0.0/16",
+            "198.18.0.0/15",
+            "198.51.100.0/24",
+            "203.0.113.0/24",
+            "::1/128",
+            "fc00::/7",
+            "fe80::/10"
+          ],
+          "outboundTag": "blocked"
+        }
+      ]
+    }
+  },
+  "inbound": {
+    "protocol": "vmess",
+    "port": 8448,
+    "listen": "0.0.0.0",
+    "settings": {
+      "clients": [
+        {
+          "id": "748cfe07-9be3-402c-992c-a8fd26dd2547",
+          "alterId": 1,
+          "level": 0,
+          "email": "abc@example.com",
+          "security": "chacha20-poly1305"
+        },
+        {
+          "id": "57ef0f0d-c343-4350-813c-1c1a92623b39",
+          "alterId": 1,
+          "level": 0,
+          "email": "abc@example.com",
+          "security": "chacha20-poly1305"
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "kcp"
+    },
+    "tag": "vmess-incoming"
+  },
+  "outbound": {
+    "protocol": "freedom",
+    "tag": "direct",
+    "settings": {
+      "timeout": 10
+    }
+  },
+  "inboundDetour": [],
+  "outboundDetour": [
+    {
+      "protocol": "blackhole",
+      "tag": "blocked",
+      "settings": {}
+    }
+  ],
+  "transport": {
+    "tcpSettings": {},
+    "kcpSettings": {
+      "mtu": 1350,
+      "tti": 20,
+      "uplinkCapacity": 2,
+      "downlinkCapacity": 5,
+      "congestion": false,
+      "readBufferSize": 2,
+      "writeBufferSize": 2,
+      "header": {
+        "type": "wechat-video"
+      }
+    },
+    "wsSettings": {}
+  }
+}
