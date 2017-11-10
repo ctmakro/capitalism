@@ -45,7 +45,7 @@ if(s.length!==2){
 var conn_addr = s[0]
 var conn_port = Number(s[1])
 
-var username = args.username
+var username = args.username.length?args.username:'test'
 
 print(`username:`,username)
 print('listening:',listen_port)
@@ -61,11 +61,21 @@ var srv = socks5.createServer(function(info, accept, deny) {
     port: info.dstPort,
     proxyHost: conn_addr,
     proxyPort: conn_port,
-    auths: [ socks5.auth.UserPassword(username,'password_not_used') ]
-  },
-  function(outgoing_socket) {
+    localDNS: false,
+    auths: [ socks5.auth.UserPassword('qin','ash') ]
+  })
+  .on('error',err=>{
+    print('outgoint_client error')
+    print(err)
+  })
+  .on('connect',outgoing_socket=>{
+    // now pipe the incoming socket to its destination
+    incoming_socket.pipe(outgoing_socket)
+    outgoing_socket.pipe(incoming_socket)
+
     var error_handler = function(err){
       // if connection failed
+      print('fuck')
       print(err)
     }
 
@@ -74,12 +84,8 @@ var srv = socks5.createServer(function(info, accept, deny) {
 
     print(`[authentify] piping connection heading ${info.dstAddr}:${info.dstPort} to downstream proxy on ${conn_addr}:${conn_port}`)
 
-    // now pipe the incoming socket to its destination
-    outgoing_socket.pipe(incoming_socket)
-    // incoming_socket.pipe(outgoing_socket)
-
     // let the event system do its job
-  }).on('error',err=>print(err))
+  })
 })
 
 srv.listen(listen_port, listen_addr, function() {

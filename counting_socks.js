@@ -22,7 +22,7 @@ parser.addArgument(['-u','--users'],{
   defaultValue:'userlist.txt'
 })
 parser.addArgument(['-t','--test'],{
-  help:'mode without authentication',
+  help:'test mode without authentication',
   nargs:0,
 })
 
@@ -98,7 +98,7 @@ const CountingSocks = function(listen_port){
     print(`[socks5] proxy created on port ${listen_port}`)
   });
 
-  if(args.test!==undefined){
+  if(args.test!==null){
     s5.useAuth(socks5.auth.None());
   }else{
     var ac = AccountChecker()
