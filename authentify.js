@@ -70,9 +70,8 @@ var srv = socks5.createServer(function(info, accept, deny) {
   })
   .on('connect',outgoing_socket=>{
     // now pipe the incoming socket to its destination
-    incoming_socket.pipe(outgoing_socket)
-    outgoing_socket.pipe(incoming_socket)
-
+    incoming_socket.pipe(outgoing_socket).pipe(incoming_socket)
+    
     var error_handler = function(err){
       // if connection failed
       print('fuck')

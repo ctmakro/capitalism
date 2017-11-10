@@ -1,3 +1,4 @@
 /node_modules
 gfwlist.txt
 generated.pac
+/v2ray/v2ray*
